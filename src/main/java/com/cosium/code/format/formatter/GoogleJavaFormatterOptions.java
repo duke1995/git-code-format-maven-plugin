@@ -12,12 +12,14 @@ public class GoogleJavaFormatterOptions {
   private final boolean fixImportsOnly;
   private final boolean skipSortingImports;
   private final boolean skipRemovingUnusedImports;
+  private final boolean skipJavadocFormatting;
 
   public GoogleJavaFormatterOptions(
       boolean aosp,
       boolean fixImportsOnly,
       boolean skipSortingImports,
-      boolean skipRemovingUnusedImports) {
+      boolean skipRemovingUnusedImports,
+      boolean skipJavadocFormatting) {
     if (aosp) {
       style = AOSP;
     } else {
@@ -26,10 +28,11 @@ public class GoogleJavaFormatterOptions {
     this.fixImportsOnly = fixImportsOnly;
     this.skipSortingImports = skipSortingImports;
     this.skipRemovingUnusedImports = skipRemovingUnusedImports;
+    this.skipJavadocFormatting = skipJavadocFormatting;
   }
 
   public JavaFormatterOptions javaFormatterOptions() {
-    return JavaFormatterOptions.builder().style(style).build();
+    return JavaFormatterOptions.builder().style(style).formatJavadoc(!skipJavadocFormatting).build();
   }
 
   public boolean isFixImportsOnly() {
@@ -44,6 +47,10 @@ public class GoogleJavaFormatterOptions {
     return skipRemovingUnusedImports;
   }
 
+  public boolean isSkipJavadocFormatting() {
+    return skipJavadocFormatting;
+  }
+
   @Override
   public String toString() {
     return "GoogleJavaFormatterOptions{"
@@ -55,6 +62,8 @@ public class GoogleJavaFormatterOptions {
         + skipSortingImports
         + ", skipRemovingUnusedImports="
         + skipRemovingUnusedImports
+        + ", skipJavadocFormatting="
+        + skipJavadocFormatting
         + '}';
   }
 }

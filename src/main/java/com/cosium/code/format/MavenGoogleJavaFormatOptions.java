@@ -10,10 +10,11 @@ public class MavenGoogleJavaFormatOptions {
   @Parameter private boolean fixImportsOnly;
   @Parameter private boolean skipSortingImports;
   @Parameter private boolean skipRemovingUnusedImports;
+  @Parameter private boolean skipJavadocFormatting;
 
   public GoogleJavaFormatterOptions toFormatterOptions() {
     return new GoogleJavaFormatterOptions(
-        aosp, fixImportsOnly, skipSortingImports, skipRemovingUnusedImports);
+        aosp, fixImportsOnly, skipSortingImports, skipRemovingUnusedImports, skipJavadocFormatting);
   }
 
   public void setAosp(boolean aosp) {
@@ -30,5 +31,9 @@ public class MavenGoogleJavaFormatOptions {
 
   public void setSkipRemovingUnusedImports(boolean skipRemovingUnusedImports) {
     this.skipRemovingUnusedImports = skipRemovingUnusedImports;
+  }
+
+  public void setSkipJavadocFormatting(boolean skipJavadocFormatting) {
+    this.skipJavadocFormatting = skipJavadocFormatting;
   }
 }

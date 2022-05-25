@@ -11,6 +11,7 @@
         <fixImportsOnly>false</fixImportsOnly>
         <skipSortingImports>false</skipSortingImports>
         <skipRemovingUnusedImports>false</skipRemovingUnusedImports>
+        <skipJavadocFormatting>false</skipJavadocFormatting>
     </properties>
 
     <build>
@@ -44,6 +45,7 @@
                         <fixImportsOnly>${fixImportsOnly}</fixImportsOnly>
                         <skipSortingImports>${skipSortingImports}</skipSortingImports>
                         <skipRemovingUnusedImports>${skipRemovingUnusedImports}</skipRemovingUnusedImports>
+                        <skipJavadocFormatting>${skipJavadocFormatting}</skipJavadocFormatting>
                     </googleJavaFormatOptions>
                 </configuration>
             </plugin>
