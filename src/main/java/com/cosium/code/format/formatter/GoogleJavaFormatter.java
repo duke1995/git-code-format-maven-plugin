@@ -9,6 +9,7 @@ import com.google.googlejavaformat.java.Formatter;
 import com.google.googlejavaformat.java.FormatterException;
 import com.google.googlejavaformat.java.ImportOrderer;
 import com.google.googlejavaformat.java.RemoveUnusedImports;
+import com.google.googlejavaformat.java.StringWrapper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -73,12 +74,24 @@ public class GoogleJavaFormatter implements CodeFormatter {
       return fixImports(unformattedContent);
     }
     if (lineRanges.isAll()) {
-      return fixImports(formatter.formatSource(unformattedContent));
+      String formatted = formatter.formatSource(unformattedContent);
+
+      if (!options.isSkipReflowingLongStrings()) {
+        formatted = StringWrapper.wrap(formatted, formatter);
+      }
+
+      return fixImports(formatted);
     }
 
     RangeSet<Integer> charRangeSet =
         Formatter.lineRangesToCharRanges(unformattedContent, lineRanges.rangeSet());
-    return formatter.formatSource(unformattedContent, charRangeSet.asRanges());
+    String formatted = formatter.formatSource(unformattedContent, charRangeSet.asRanges());
+
+    if (!options.isSkipReflowingLongStrings()) {
+      formatted = StringWrapper.wrap(formatted, formatter);
+    }
+
+    return formatted;
   }
 
   private String fixImports(final String unformattedContent) throws FormatterException {

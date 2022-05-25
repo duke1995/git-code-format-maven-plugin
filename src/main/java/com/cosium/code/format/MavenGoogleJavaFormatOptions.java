@@ -10,10 +10,11 @@ public class MavenGoogleJavaFormatOptions {
   @Parameter private boolean fixImportsOnly;
   @Parameter private boolean skipSortingImports;
   @Parameter private boolean skipRemovingUnusedImports;
+  @Parameter private boolean skipReflowingLongStrings;
 
   public GoogleJavaFormatterOptions toFormatterOptions() {
     return new GoogleJavaFormatterOptions(
-        aosp, fixImportsOnly, skipSortingImports, skipRemovingUnusedImports);
+        aosp, fixImportsOnly, skipSortingImports, skipRemovingUnusedImports, skipReflowingLongStrings);
   }
 
   public void setAosp(boolean aosp) {
@@ -30,5 +31,9 @@ public class MavenGoogleJavaFormatOptions {
 
   public void setSkipRemovingUnusedImports(boolean skipRemovingUnusedImports) {
     this.skipRemovingUnusedImports = skipRemovingUnusedImports;
+  }
+
+  public void setSkipReflowingLongStrings(boolean skipReflowingLongStrings) {
+    this.skipReflowingLongStrings = skipReflowingLongStrings;
   }
 }

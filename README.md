@@ -86,6 +86,7 @@ The plugin allows you to tweak Google Java Format options :
           <fixImportsOnly>false</fixImportsOnly>
           <skipSortingImports>false</skipSortingImports>
           <skipRemovingUnusedImports>false</skipRemovingUnusedImports>
+          <skipReflowingLongStrings>false</skipReflowingLongStrings>
         </googleJavaFormatOptions>
       </configuration>
     </plugin>
@@ -104,6 +105,8 @@ Documentation from the google-java-format CLI tool :
   Do not fix the import order. Unused imports will still be removed.
 --skip-removing-unused-imports
   Do not remove unused imports. Imports will still be sorted.
+--skip-reflowing-long-strings
+  Do not reflow string literals that exceed the column limit.
 ```
 
 ### Frequently asked questions
